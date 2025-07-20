@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ứng dụng kiếm tiền</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Trang đăng nhập -->
+    <div id="login-page" class="page active">
+      <h2>Đăng nhập</h2>
+      <input type="text" id="login-phone" placeholder="Số điện thoại">
+      <input type="password" id="login-password" placeholder="Mật khẩu">
+      <button onclick="login()">Đăng nhập</button>
+      <p>Chưa có tài khoản? <span onclick="showPage('register-page')">Đăng ký</span></p>
+    </div>
+
+    <!-- Trang đăng ký -->
+    <div id="register-page" class="page">
+      <h2>Đăng ký</h2>
+      <input type="text" id="register-phone" placeholder="Số điện thoại">
+      <input type="password" id="register-password" placeholder="Mật khẩu">
+      <label><input type="checkbox" id="agree-policy"> Tôi đồng ý điều khoản</label>
+      <button onclick="register()">Đăng ký</button>
+      <p>Đã có tài khoản? <span onclick="showPage('login-page')">Đăng nhập</span></p>
+    </div>
+
+    <!-- Trang chủ -->
+    <div id="home-page" class="page">
+      <h2>Trang chủ</h2>
+      <img src="earth.jpg" alt="Hình trái đất" class="earth-img">
+      <div class="investment">
+        <h3>Các gói đầu tư:</h3>
+        <ul>
+          <li>50.000đ - Lãi 5.000đ/ngày</li>
+          <li>250.000đ - Lãi 45.000đ/ngày</li>
+          <li>500.000đ - Lãi 95.000đ/ngày</li>
+          <li>1.000.000đ - Lãi 120.000đ/ngày</li>
+        </ul>
+      </div>
+      <button onclick="showPage('deposit-page')">Nạp tiền</button>
+      <button onclick="showPage('withdraw-page')">Rút tiền</button>
+      <button onclick="showPage('profile-page')">Của tôi</button>
+    </div>
+
+    <!-- Trang nạp tiền -->
+    <div id="deposit-page" class="page">
+      <h2>Nạp tiền</h2>
+      <p>Chuyển khoản đến STK:</p>
+      <p><strong>8825059382 - HA LONG VU</strong></p>
+      <img src="qr.jpg" alt="QR nạp tiền" class="qr-img">
+      <input type="number" id="deposit-amount" placeholder="Nhập số tiền đã nạp">
+      <button onclick="deposit()">Xác nhận nạp</button>
+      <button onclick="showPage('home-page')">Quay lại</button>
+    </div>
+
+    <!-- Trang rút tiền -->
+    <div id="withdraw-page" class="page">
+      <h2>Rút tiền</h2>
+      <input type="number" id="withdraw-amount" placeholder="Nhập số tiền muốn rút">
+      <button onclick="withdraw()">Xác nhận rút</button>
+      <p id="withdraw-msg"></p>
+      <button onclick="showPage('home-page')">Quay lại</button>
+    </div>
+
+    <!-- Trang của tôi -->
+    <div id="profile-page" class="page">
+      <h2>Của tôi</h2>
+      <p>Số dư: <span id="balance">0</span>đ</p>
+      <button onclick="showPage('withdraw-page')">Rút tiền</button>
+      <button onclick="showPage('home-page')">Về trang chủ</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+Vũ
+style.css
+Vũ
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+#app {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  margin-top: 40px;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+input[type="text"], input[type="password"], input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+.earth-img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.qr-img {
+  width: 100%;
+  max-width: 250px;
+  display: block;
+  margin: 10px auto;
+  border-radius: 8px;
+}
+
+.investment {
+  background-color: #e0f7fa;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.investment ul {
+  padding-left: 20px;
+}
+
+.investment li {
+  margin-bottom: 6px;
+}
+
+span {
+  color: blue;
+  cursor: pointer;
+}
+
+label {
+  font-size: 14px;
+}
